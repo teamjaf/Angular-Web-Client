@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from './Model/card.model';
 import { CardsService } from './service/cards.service';
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { CardsService } from './service/cards.service';
 })
 export class AppComponent implements OnInit {
   title = 'cards-web';
+  cards: Card[] = [];
 
   constructor(private CardsService: CardsService){
 
@@ -18,8 +20,10 @@ export class AppComponent implements OnInit {
   getAllCards(){
     this.CardsService.getAllCards()
     .subscribe(
-      response =>
-      console.log(response)
+      response =>{
+        console.log(response);
+        this.cards = response;
+      }
     );
   }
 
