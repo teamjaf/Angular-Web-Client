@@ -9,6 +9,14 @@ import { CardsService } from './service/cards.service';
 export class AppComponent implements OnInit {
   title = 'cards-web';
   cards: Card[] = [];
+  card: Card = {
+    id: '',
+    cardHolderName: '',
+    cardNumber: '',
+    expiryMonth: '',
+    expiryYear: '',
+    cVC: '',
+  }
 
   constructor(private CardsService: CardsService){
 
@@ -27,4 +35,32 @@ export class AppComponent implements OnInit {
     );
   }
 
-}
+  onSubmit(){
+    console.log(this.card)
+    this.CardsService.addCard(this.card)
+    .subscribe(
+      response =>{
+        this.getAllCards();
+        this.card = {
+          id: '',
+          cardHolderName: '',
+          cardNumber: '',
+          expiryMonth: '',
+          expiryYear: '',
+          cVC: '',
+        };
+      },
+      error => console.log("Error: ", error)
+    )
+    }
+
+    deleteCard(id: string){
+      this.CardsService.deleteCard(id)
+      .subscribe(
+        response =>{
+          console.log(response);
+          this.getAllCards();
+        }
+      );
+    }
+  }

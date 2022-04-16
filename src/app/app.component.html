@@ -9,37 +9,37 @@
       Angular + ASP.NET Core Web API CRUD
     </div>
     <div class="card-body">
-      <form>
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-control">
         <div class="Card-text">
           <label for="">Card Holder Name:</label>
-          <input class="input-group mb-3" type="text" name="cardName">
+          <input class="input-group mb-3" type="text" name="cardName" [(ngModel)]="card.cardHolderName">
         </div>
         <div class="form-group">
           <label for="">Card Number:</label>
-          <input class="input-group mb-3" type="text" name="cardNumber">
+          <input class="input-group mb-3" type="text" name="cardNumber" [(ngModel)]="card.cardNumber">
         </div>
         </div>
         <div class="input-group">
           <div class="form-control">
             <label for="">CVC</label>
             <span>: </span>
-            <input  type="text" name="cardCVC">
+            <input  type="text" name="cardCVC" [(ngModel)]="card.cVC">
           </div>
           <div class="form-control">
             <label for="">Expiry Month</label>
             <span>: </span>
-            <input type="text" name="cardExpiryMonth">
+            <input type="text" name="cardExpiryMonth" [(ngModel)]="card.expiryMonth">
           </div>
           <div class="form-control">
             <label  for="">Expiry Year</label>
             <span>: </span>
-            <input type="text" name="cardExpiryYear">
+            <input type="text" name="cardExpiryYear" [(ngModel)]="card.expiryYear">
           </div>
         </div>
+        <button  class="btn btn-outline-success">Save</button>
       </form>
     </div>
-    <button type="button" class="btn btn-outline-success">Save</button>
   </div>
 </div>
 
@@ -55,7 +55,7 @@
       <div class="card-body">
         <h5 class="card-title">{{card.cardHolderName}}</h5>
         <p class="card-text">{{card.cardNumber}}</p>
-        <a href="#" class="btn btn-outline-danger">Button</a>
+        <a (click)="deleteCard(card.id)" class="btn btn-outline-danger">Button</a>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
       <div class="card-body">
         <h5 class="card-title">Mohammad Jafrin Hossain</h5>
         <p class="card-text">78979425651964984984884</p>
-        <a href="#" class="btn btn-outline-danger">Button</a>
+        <a  class="btn btn-outline-danger">Button</a>
       </div>
     </div>
   </div>
