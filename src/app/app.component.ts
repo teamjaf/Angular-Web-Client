@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     cardNumber: '',
     expiryMonth: '',
     expiryYear: '',
-    cVC: '',
+    cardCVC: ''
   }
 
   constructor(private CardsService: CardsService){
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
           cardNumber: '',
           expiryMonth: '',
           expiryYear: '',
-          cVC: '',
+          cardCVC: ''
         };
       },
       error => console.log("Error: ", error)
@@ -63,4 +63,23 @@ export class AppComponent implements OnInit {
         }
       );
     }
+    populateCard(card: Card){
+      this.card = card;
+    }
+
+    updateButton(card: Card){
+      this.updateCard(this.card);
+    }
+
+    updateCard(card: Card){
+      this.CardsService.updateCard(card)
+      .subscribe(
+        response =>{
+          console.log(response);
+          this.getAllCards();
+        }
+
+      )
+    }
+
   }

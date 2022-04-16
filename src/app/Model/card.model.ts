@@ -4,5 +4,5 @@ export interface Card{
     cardNumber: string;
     expiryMonth: String;
     expiryYear: string;
-    cVC: string;
+    cardCVC: any;
 }
